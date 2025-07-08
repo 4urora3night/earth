@@ -9,7 +9,7 @@ tput_clean_text_area() {
 }
 
 check_app_installed() {
-  if ! command -v "$1" &>/dev/null; then
+  if ! pacman -Qs "${1}"; then
     return 0
   else
     return 1

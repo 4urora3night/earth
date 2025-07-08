@@ -22,7 +22,7 @@ cleanup() {
 }
 
 install_dependencies() {
-  local dependencies=("fzf" "gum" "yq" "fd" "bat" "flatpak")
+  local dependencies=("fzf" "gum" "yq" "fd" "bat" "flatpak") 
   local dependencies_install=()
   local update=1
   for i in "${dependencies[@]}"; do
