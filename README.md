@@ -42,8 +42,12 @@ For example:
     ∟ 📄 {Here also can your TOML File stay}.toml
   ∟ 📄 earth.sh
 ```
+Hidden toml files are allowed
 
 #### Changelog
+
+> 🗓️ 6 Jul 2025
+> + Hidden toml files can be selected
 
 > 🗓️ 28 Jun 2025
 > - UI improvement
