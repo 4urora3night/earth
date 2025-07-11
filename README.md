@@ -1,6 +1,6 @@
 # Project Earth
 ##### by `4urora3night`
-##### Version: `152.3` — *[Beta]*
+##### Version: `152.4` — *[Beta]*
 A script to install your apps, all housed in a `.toml` file - for rapid and automated arch linux setups. \
 Initially inspired by the ML4W options script.
 
@@ -45,6 +45,9 @@ For example:
 Hidden toml files are allowed
 
 #### Changelog
+
+> 🗓️ 11 Jul 2025
+> - Refined dependencies checker.
 
 > 🗓️ 6 Jul 2025
 > + Hidden toml files can be selected
