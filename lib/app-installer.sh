@@ -64,6 +64,7 @@ installer() {
     esac
   done
   text_log "Complete :)"
+  sleep 3
 }
 
 install_pac_apps() {
