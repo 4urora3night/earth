@@ -46,14 +46,17 @@ Hidden toml files are allowed
 
 #### Changelog
 
+> 🗓️ 20 Jul 2025
+> - Bug fixes.
+
 > 🗓️ 11 Jul 2025
-> - Refined dependencies checker.
+> + Refined dependencies checker.
 
 > 🗓️ 6 Jul 2025
 > + Hidden toml files can be selected
 
 > 🗓️ 28 Jun 2025
-> - UI improvement
+> + UI improvement
 > - refactored code
 
 older logs can be found in changelog.md

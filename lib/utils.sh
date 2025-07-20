@@ -136,7 +136,7 @@ dependencies_app_checks() {
 # -- Application installers -- #
 
 pacman_install() {
-  sudo pacman -S "${@}" --noconfirm
+  ${AUR_HELPER} -S "${@}" --noconfirm
 }
 flatpak_install() {
   flatpak install flathub -y "${1}"
