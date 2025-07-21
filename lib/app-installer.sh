@@ -72,7 +72,7 @@ install_pac_apps() {
   local packages=()
   mapfile -t packages < <(tomlq -r '.pacman.install[]' "$config_toml")
   for i in "${packages[@]}"; do
-    pacman_install "$i"
+    app_installer "$i"
   done
 }
 

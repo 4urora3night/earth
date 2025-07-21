@@ -22,9 +22,9 @@ option_home() {
       "${option_list[@]}" '(App Installer)' '(Settings)' 'Update 󰚰 ' 'Exit 󰈆 '
   )
   case $choice in
-    "(Settings)") settings ;;
-    "(App Installer)") aurora_unpac ;;
-    "Update 󰚰 ") update_sys ;;
-    "Exit 󰈆 ") clear && exit ;;
+  "(Settings)") settings ;;
+  "(App Installer)") aurora_unpac ;;
+  "Update 󰚰 ") update ;;
+  "Exit 󰈆 ") clear && exit ;;
   esac
 }

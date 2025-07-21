@@ -12,13 +12,11 @@ cleanup() {
 }
 trap cleanup EXIT
 
-
-
 # -- Variables -- #
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 dependencies_apps=("fzf" "gum" "yq" "fd" "bat" "flatpak")
-dependencies_files=("app-installer.sh" "aur-helper.sh" "settings.sh" "utils.sh")
+dependencies_files=("app-installer.sh" "aur-helper.sh" "settings.sh" "utils.sh" "distro-lib/arch-linux-utils.sh")
 text_box_size=$(($(tput cols) - 4))
 config_toml=Null
 
@@ -29,20 +27,25 @@ for file in "${dependencies_files[@]}"; do
   source "${script_dir}/lib/${file}"
 done
 
-
 if [[ "$(tty)" == "/dev/tty"* ]]; then
   source "${script_dir}/lib/tty-ui.sh"
 else
   source "${script_dir}/lib/terminal-ui.sh"
 fi
 
-dependencies_app_checks
-aur_helper_checks
+if check_command_available "pacman"; then
+  source "${script_dir}/lib/distro-lib/arch-linux-utils.sh"
+fi
 
+dependency_app_check
+
+if check_command_available "pacman"; then
+  aur_helper_checks
+fi
 # -- Main Loop -- #
 
 while true; do
   clear
   title
-  option_home 
+  option_home
 done
