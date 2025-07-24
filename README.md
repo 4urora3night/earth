@@ -46,6 +46,10 @@ Hidden toml files are allowed
 
 #### Changelog
 
+> 🗓️ 24 Jul 2025
+> - Added a fail safe.
+
+
 > 🗓️ 21 Jul 2025
 > - Support for ports to other distro is now possible.
 

@@ -35,6 +35,9 @@ fi
 
 if check_command_available "pacman"; then
   source "${script_dir}/lib/distro-lib/arch-linux-utils.sh"
+else
+  echo "[ERROR]Missing distro specific functions in earth/lib/distro-lib/"
+  exit 1
 fi
 
 dependency_app_check
