@@ -16,7 +16,7 @@ trap cleanup EXIT
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 dependencies_apps=("fzf" "gum" "yq" "fd" "bat" "flatpak")
-dependencies_files=("app-installer.sh" "aur-helper.sh" "settings.sh" "utils.sh" "distro-lib/arch-linux-utils.sh")
+dependencies_files=("toml-config-installer.sh" "aur-helper.sh" "settings.sh" "utils.sh" "distro-lib/arch-linux-utils.sh")
 text_box_size=$(($(tput cols) - 4))
 config_toml=Null
 
