@@ -1,6 +1,6 @@
 # Project Earth
 ##### by `4urora3night`
-##### Version: `152.5` — *[Beta]*
+##### Version: `153` — *[Beta]*
 A script to install your apps, all housed in a `.toml` file - for rapid and automated arch linux setups. \
 Initially inspired by the ML4W options script.
 
