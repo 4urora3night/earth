@@ -20,6 +20,7 @@ cd earth
 
 
 To use the App installer feature, you need a {Name}.toml file containing AUR/pacman and/or flatpak packages.
+Example config available at test.toml, inc. table names for wget and git
 
 *Toml*:
 ```toml
@@ -42,13 +43,14 @@ For example:
     ∟ 📄 {Here also can your TOML File stay}.toml
   ∟ 📄 earth.sh
 ```
-Hidden toml files are allowed
+Hidden toml files are allowed.
 
 #### Changelog
 
 > 🗓️ 27 Jul 2025
 > - Added a more features.
-
+> 	- wget
+>    	- git clone
 
 > 🗓️ 21 Jul 2025
 > - Support for ports to other distro is now possible.
@@ -59,6 +61,8 @@ older logs can be found in changelog.md
 ### Notes
 
 When running the script, if a error occurs the script will exit so logs are visible.
+huh... its been a interesting first project wriiten in bash, but for now I will work on another project...
+👋 The next update won't be until a while.
 
 ---
 ### *Thanks to:*
