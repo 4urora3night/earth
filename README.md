@@ -60,8 +60,8 @@ older logs can be found in changelog.md
 
 ### Notes
 
-When running the script, if a error occurs the script will exit so logs are visible.
-huh... its been a interesting first project wriiten in bash, but for now I will work on another project...
+When running the script, if a error occurs the script will exit so logs are visible. \
+huh... its been a interesting first project wriiten in bash, but for now I will work on another project so I may futher improve my developer skills...
 👋 The next update won't be until a while.
 
 ---
