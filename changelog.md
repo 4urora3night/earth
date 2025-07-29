@@ -1,5 +1,18 @@
 ### Changelog
 
+> 🗓️ 20 Jul 2025
+> - Bug fixes.
+
+> 🗓️ 11 Jul 2025
+> + Refined dependencies checker.
+
+> 🗓️ 6 Jul 2025
+> + Hidden toml files can be selected
+
+> 🗓️ 28 Jun 2025
+> + UI improvement
+> - refactored code
+
 > 🗓️ 20 Jun 2025
 > - Minor bug fixes
 > - Space themed rename

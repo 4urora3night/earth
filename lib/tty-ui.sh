@@ -2,29 +2,29 @@
 # by 4urora3night
 
 # -Functions- #
-option_submenus () 
-{
+option_submenus() {
   local option_list=("$@")
-  choice=$(\
-  gum choose \
-  --limit 1 --header "" --cursor "   • "  --cursor.foreground 2 \
-  "${option_list[@]}" '[Back]' '[Exit]')
+  choice=$(
+    gum choose \
+      --limit 1 --header "" --cursor "   • " --cursor.foreground 2 \
+      "${option_list[@]}" '[Back]' '[Exit]'
+  )
   case $choice in
-    "[Exit]") clear && exit ;;
-    "[Back]") break;;
-  esac 
+  "[Exit]") clear && exit ;;
+  "[Back]") break ;;
+  esac
 }
-option_home ()
-{
+option_home() {
   local option_list=("$@")
-  choice=$(\
-  gum choose \
-  --limit 1 --header "" --cursor "   • "  --cursor.foreground 2 \
-  "${option_list[@]}" '(App Installer)' '(Settings)' '(-Update-)' '[Exit]')
+  choice=$(
+    gum choose \
+      --limit 1 --header "" --cursor "   • " --cursor.foreground 2 \
+      "${option_list[@]}" '(App Installer)' '(Settings)' '(-Update-)' '[Exit]'
+  )
   case $choice in
-    "(Settings)") settings ;;
-    "(App Installer)") aurora_unpac ;;
-    "(-Update-)") update_sys;;
-    "[Exit]") clear && exit;;
-  esac 
+  "(Settings)") settings ;;
+  "(App Installer)") aurora_unpac ;;
+  "(-Update-)") update ;;
+  "[Exit]") clear && exit ;;
+  esac
 }

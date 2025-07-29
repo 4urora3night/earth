@@ -1,27 +1,83 @@
 #!/bin/bash
 # by 4urora3night
 
-# -- General Utilites -- #
-
-tput_clean_text_area() {
-  tput cup 13 0
-  tput ed
+# -- Application installers -- #
+flatpak_install() {
+  flatpak install flathub -y "${1}"
 }
 
-check_app_installed() {
-  if ! pacman -Qs "${1}"; then
+update() {
+  tput_clean_text_area
+  text_box_confirm "Begin full Update?"
+  if text_confirm "Confirm"; then
+    tput_clean_text_area
+    text_box "Updating system..."
+    text_log "Pacman updating..."
+    update_system
+    text_log "flatpak updating..."
+    flatpak update -y
+    sleep 3
+  fi
+}
+
+# -- Application utilities -- #
+check_command_available() {
+  if command -v "${1}" &>/dev/null; then
     return 0
   else
     return 1
   fi
 }
 
+find_missing_depedency_apps() {
+  for app in "${dependencies_apps[@]}"; do
+    if ! app_installed_check "${app}"; then
+      missing_apps+=("${app}")
+    fi
+  done
+}
+
+dependency_app_check() {
+  local missing_apps=()
+  find_missing_depedency_apps
+
+  if [[ ! "${#missing_apps[@]}" -eq 0 ]]; then
+    echo "MISSING APPS -> preformining install of apps:"
+    for app in "${missing_apps[@]}"; do
+      echo "- ${app}"
+    done
+    sleep 3
+
+    for app in "${missing_apps[@]}"; do
+      default_package_installer "${app}"
+    done
+
+    local missing_apps=()
+    find_missing_depedency_apps
+
+    if [[ ! "${#missing_apps[@]}" -eq 0 ]]; then
+      echo "MISSING APPS -> manually preform install of apps or re-run script:"
+      for app in "${missing_apps[@]}"; do
+        echo "- ${app}"
+      done
+      exit 1
+    fi
+
+  fi
+}
+
+# -- file utilities  -- #
 setup_cache() {
   text_log "Creating cache folder for temporary files..."
   mkdir -p "${script_dir}/cache"
 }
 
-# --  Output text format  -- #
+# -- Text utilities  -- #
+tput_clean_text_area() {
+  tput cup 13 0
+  tput ed
+}
+
 title() {
   gum style \
     --foreground 4 --border-foreground 2 --border double \
@@ -85,71 +141,4 @@ fzf_stylised_preview() {
     --height 20% \
     --border-label ' Toml Finder ' --input-label ' Input ' --header-label ' File Type ' \
     --preview 'bat --style=numbers --color=always {}'
-}
-
-#-------------------------------------------
-check_app_installed() {
-  if ! command -v "$1" &>/dev/null; then
-    return 0
-  else
-    return 1
-  fi
-}
-
-find_missing_apps() {
-  for app in "${dependencies_apps[@]}"; do
-    if check_app_installed "${app}"; then
-      missing_apps+=("${app}")
-    fi
-  done
-}
-
-dependencies_app_checks() {
-  local missing_apps=()
-  find_missing_apps 
-
-  if [[ ! "${#missing_apps[@]}" -eq 0 ]]; then
-    echo "MISSING APPS -> preformining install of apps:"
-    for app in "${missing_apps[@]}"; do
-      echo "- ${app}"
-    done
-    sleep 2
-
-    for app in "${missing_apps[@]}"; do
-      pacman_install "${app}"
-    done
-
-    local missing_apps=()
-    find_missing_apps 
-
-    if [[ ! "${#missing_apps[@]}" -eq 0 ]]; then
-      echo "MISSING APPS -> manually preform install of apps or re-run script:"
-      for app in "${missing_apps[@]}"; do
-        echo "- ${app}"
-      done
-      exit 1
-    fi
-  
-  fi
-}
-
-# -- Application installers -- #
-
-pacman_install() {
-  ${AUR_HELPER} -S "${@}" --noconfirm
-}
-flatpak_install() {
-  flatpak install flathub -y "${1}"
-}
-
-update_sys() {
-  tput_clean_text_area
-  text_box_confirm "Begin full Update?"   
-  if text_confirm "Confirm"; then
-    text_box "Updating system..."
-    text_log "Pacman updating..."
-    "${AUR_HELPER}" -Syyu --noconfirm
-    text_log "flatpak updating..."
-    flatpak update -y
-  fi
 }
