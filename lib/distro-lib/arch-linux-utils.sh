@@ -1,10 +1,10 @@
 #!/bin/bash
 # by 4urora3night
 default_package_installer() {
-  sudo pacman -S "${@}" --noconfirm
+  sudo pacman -S "${1}" --noconfirm
 }
 app_installer() {
-  ${AUR_HELPER} -S "${@}" --noconfirm
+  ${AUR_HELPER} -S "${1}" --noconfirm
 }
 
 app_installed_check() {
