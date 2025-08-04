@@ -2,6 +2,10 @@
 # by 4urora3night
 
 # -- UI -- #
+setup_cache() {
+  text_log "Creating cache folder for temporary files..."
+  mkdir -p "${script_dir}/cache"
+}
 
 aur_helper_checks() {
   clear
@@ -23,7 +27,7 @@ aur_helper_checks() {
       text_box "To use this script, an AUR helper must be set."
       if text_confirm "Do you have a AUR helper installed?"; then
         while true; do
-          AUR_HELPER="$(compgen -c | sort -u | fzf_stylised)"
+          AUR_HELPER="$(compgen -c | sort -u | fzf_app_search)"
           tput_clean_text_area
           text_box_confirm "! ${AUR_HELPER} is set as your AUR helper. !"
           option_submenus 'Ok' 'Redo'
