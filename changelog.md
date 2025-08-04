@@ -1,5 +1,12 @@
 ### Changelog
 
+- feat:implement logs (d02cf09)
+- refactor:simplify dependency sourcing (3d6bb43)
+- refactor:rename and move functions into relevant files (02fdd72)
+
+
+[Archived]
+
 > 🗓️ 20 Jul 2025
 > - Bug fixes.
 
