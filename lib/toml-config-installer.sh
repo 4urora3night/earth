@@ -35,7 +35,7 @@ select_file() {
   text_box 'Time to unpack your apps.\nStart by selecting your toml configuration file to unload.'
 
   cd "$script_dir/.." || return 1
-  config_toml=$(fd -H -e toml -x realpath {} | fzf_stylised_preview)
+  config_toml=$(fd -H -e toml -x realpath {} | fzf_toml_search)
   cd "$script_dir" || return 1
 
   if [[ -z "$config_toml" || ! -f "$config_toml" ]]; then
@@ -85,24 +85,27 @@ installer() {
 
 install_pac_apps() {
   tput_clean_text_area
+  log_date
   local packages=()
   mapfile -t packages < <(tomlq -r '.pacman.install[]' "$config_toml")
   for i in "${packages[@]}"; do
-    app_installer "$i"
+    log app_installer "$i"
   done
 }
 
 install_flatpak_apps() {
   tput_clean_text_area
+  log_date
   local packages=()
   mapfile -t packages < <(tomlq -r '.flatpak.install[]' "$config_toml")
   for i in "${packages[@]}"; do
-    flatpak_install "$i"
+    log flatpak_install "$i"
   done
 }
 
 download_git_repo() {
   tput_clean_text_area
+  log_date
   local repo=()
   local location=()
   mapfile -t repo < <(tomlq -r '.git.clone[]' "$config_toml")
@@ -117,13 +120,14 @@ download_git_repo() {
   for link in "${repo[@]}"; do
     tput_clean_text_area
     text_box "Cloning ${link}"
-    git clone "${link}"
+    log git clone "${link}"
   done
   popd &>/dev/null
 }
 
 download_wget_files() {
   tput_clean_text_area
+  log_date
   local url_table=()
   local location=()
   mapfile -t url_table < <(tomlq -r '.wget.file[]' "$config_toml")
@@ -138,7 +142,7 @@ download_wget_files() {
   for url in "${url_table}"; do
     tput_clean_text_area
     text_box "Downloading ${url}"
-    wget "${url}"
+    log wget "${url}"
   done
   popd &>/dev/null
 }
