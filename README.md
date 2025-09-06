@@ -1,5 +1,5 @@
 # Project Earth 
-##### Version: `100.55.0` — *[Revamp in progress]*
+##### Version: `100.55.2` — *[Revamp in progress]*
 A script to install your apps, from a configuration housed in a `.toml` file - for simple, unattended and rapid setups. 
 
 
