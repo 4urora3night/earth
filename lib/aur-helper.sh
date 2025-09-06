@@ -13,7 +13,7 @@ aur_helper_checks() {
   local installed_counter=1
 
   for i in "${Aur_Helpers[@]}"; do
-    if ! check_app_installed "${i}"; then
+    if app_installed_check "${i}"; then
       installed_counter=0
       AUR_HELPER="${i}"
       break
