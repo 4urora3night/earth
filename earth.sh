@@ -47,8 +47,8 @@ if command_available "pacman"; then
   aur_helper_checks
 fi
 
-rm logs.txt
-touch logs.txt
+[ -e "${script_dir}/logs.txt" ] && rm "${script_dir}/logs.txt"
+touch "${script_dir}/logs.txt"
 # -- Main Loop -- #
 
 while true; do
