@@ -1,73 +1,52 @@
-# Project Earth
-##### by `4urora3night`
-##### Version: `153` — *[Beta]*
-A script to install your apps, all housed in a `.toml` file - for rapid and automated arch linux setups. \
-Initially inspired by the ML4W options script.
-
-### Requirements
-- Arch linux system
-- Active WiFi connection
+# Project Earth 
+**Version: `v155.3`** \
+A script to install your apps, from a configuration housed in a `.toml` file - for simple, unattended and rapid setups. 
 
 ### Usage
-You can download the script with:
-Clone the repo:
+1. `bash <(curl -s "https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/downloader.sh")`
+2. `cd earth`
+3. `./earth.sh`
 
-```bash
-bash <(curl -s "https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/downloader.sh")
-cd earth
-./earth.sh
-```
-
-
-To use the App installer feature, you need a {Name}.toml file containing AUR/pacman and/or flatpak packages.
-Example config available at test.toml, inc. table names for wget and git
-
-*Toml*:
+_Toml configuration_
 ```toml
-[pacman] 
-#Table name = Compulsory
-install = ['cava', 'fzf'] 
-# List = Fill with package names
+[pacman]
+# fill with package names
+install = ['git' ,'cava']
 [flatpak]
-install = ['md.obsidian.Obsidian', 'app.zen_browser.zen']
+# fill with package IDs
+install = ['app.zen_browser.zen']
+[git]
+# fill with urls to repo 
+clone = ['https://github.com/WeirdTreeThing/chromebook-linux-audio.git']
+# and specify which location to download to
+location = ['./cache/git']
+[wget]
+# fill with url to a file
+file = ['https://raw.githubusercontent.com/4urora3night/dotfiles/refs/heads/main/pac.toml']
+# and specify which location to download to
+location = ['./cache/wget']
 ```
 
-The TOML file can be placed in the level above and _all_ levels below the the Project Earth folder.
-For example:
+The TOML file can be placed in the level above and all levels below the the Project Earth folder. For example:
 ```
 📁 Home
 ∟ 📄 {Your TOML File}.toml
 ∟ 📁 earth
   ∟ 📄 {Another place your TOML File can live}.toml
   ∟ 📁 lib
-    ∟ 📄 {Here also can your TOML File stay}.toml
+    ∟ 📄 {Here too can your TOML File exist}.toml
   ∟ 📄 earth.sh
 ```
 Hidden toml files are allowed.
 
-#### Changelog
-
-> 🗓️ 27 Jul 2025
-> - Added a more features.
->    - wget
->    - git clone
-
-> 🗓️ 21 Jul 2025
-> - Support for ports to other distro is now possible.
 
 
-older logs can be found in changelog.md
-
-### Notes
-
-When running the script, if a error occurs the script will exit so logs are visible. \
-huh... its been a interesting first project wriiten in bash, but for now I will work on another project so I may futher improve my developer skills...
-👋 The next update won't be until a while.
+### Changelogs 
+Available in  [changelogs.md](https://github.com/4urora3night/earth/blob/tera/changelog.md)
 
 ---
 ### *Thanks to:*
 - [*Gum*](https://github.com/charmbracelet/gum) \
-	➜ All the eyecandy.
-- *ML4W options script* \
-	➜  For inspiration and borrowed code.
+	➜ All the eyecandy. 👀
 	
+##### Made by `4urora3night` for a better quality of life 🌟
