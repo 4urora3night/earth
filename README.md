@@ -3,7 +3,7 @@
 A script to install your apps, from a configuration housed in a `.toml` file - for simple, unattended and rapid setups. 
 
 ### Usage
-1. `bash <(curl -s "https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/downloader.sh")`
+1. `bash <(curl -s "https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/download.sh")`
 2. `cd earth`
 3. `./earth.sh`
 
