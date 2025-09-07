@@ -15,7 +15,7 @@ trap cleanup EXIT
 # -- Variables -- #
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-dependencies_apps=("fzf" "gum" "yq" "fd" "bat" "flatpak")
+dependencies_apps=("fzf" "gum" "yq" "fd" "bat" "flatpak" "git" "wget")
 dependencies_files=("toml-config-installer" "aur-helper" "utils" "dependency-check" "terminal-menu-tui" "tty-menu-tui" "tui")
 text_box_size=$(($(tput cols) - 4))
 config_toml=Null
