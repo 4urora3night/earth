@@ -12,9 +12,11 @@ cd lib
 curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/toml-config-installer.sh
 curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/aur-helper.sh
 curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/settings.sh
-curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/terminal-ui.sh
-curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/tty-ui.sh
+curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/terminal-menu-tui.sh
+curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/tty-menu-tui.sh
 curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/utils.sh
+curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/tui.sh
+curl -O https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/lib/dependency-check.sh
 
 cd distro-lib
 
