@@ -2,7 +2,7 @@
 
 ### Versioning
 The scheme is as follows:
-`Major . Minor  (Patch)` \
+`{[Major * 100] + Minor}. Patch` \
 
 ### Commit format
 The commits are based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
