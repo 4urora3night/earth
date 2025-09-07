@@ -2,18 +2,30 @@
 **Version: `v155.3`** \
 A script to install your apps, from a configuration housed in a `.toml` file - for simple, unattended and rapid setups. 
 
+### Usage
+1. `bash <(curl -s "https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/downloader.sh")`
+2. `cd earth`
+3. `./earth.sh`
+_Toml configuration_
+
+
+The TOML file can be placed in the level above and all levels below the the Project Earth folder. For example:
+```
+📁 Home
+∟ 📄 {Your TOML File}.toml
+∟ 📁 earth
+  ∟ 📄 {Another place your TOML File can live}.toml
+  ∟ 📁 lib
+    ∟ 📄 {Here too can your TOML File exist}.toml
+  ∟ 📄 earth.sh
+```
+Hidden toml files are allowed.
+
+
 
 ### Changelogs 
 Available in  [changelogs.md](https://github.com/4urora3night/earth/blob/tera/changelog.md)
 
-#### Versioning
-The scheme is as follows:
-`{[Major * 100] + Minor}. Patch` 
-
-#### Commit format
-The commits are based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-Also used in the changelogs.
- 
 ---
 ### *Thanks to:*
 - [*Gum*](https://github.com/charmbracelet/gum) \
