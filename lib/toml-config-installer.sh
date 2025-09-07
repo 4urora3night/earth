@@ -85,7 +85,6 @@ installer() {
 
 install_pac_apps() {
   tput_clean_text_area
-  log_date
   local packages=()
   mapfile -t packages < <(tomlq -r '.pacman.install[]' "$config_toml")
   for i in "${packages[@]}"; do
@@ -95,7 +94,6 @@ install_pac_apps() {
 
 install_flatpak_apps() {
   tput_clean_text_area
-  log_date
   local packages=()
   mapfile -t packages < <(tomlq -r '.flatpak.install[]' "$config_toml")
   for i in "${packages[@]}"; do
@@ -105,7 +103,6 @@ install_flatpak_apps() {
 
 download_git_repo() {
   tput_clean_text_area
-  log_date
   local repo=()
   local location=()
   mapfile -t repo < <(tomlq -r '.git.clone[]' "$config_toml")
@@ -127,7 +124,6 @@ download_git_repo() {
 
 download_wget_files() {
   tput_clean_text_area
-  log_date
   local url_table=()
   local location=()
   mapfile -t url_table < <(tomlq -r '.wget.file[]' "$config_toml")

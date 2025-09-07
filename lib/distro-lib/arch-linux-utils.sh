@@ -15,5 +15,5 @@ app_installed_check() {
   fi
 }
 update_system() {
-  "${AUR_HELPER}" -Syyu --noconfirm
+  log "${AUR_HELPER}" -Syyu --noconfirm
 }

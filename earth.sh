@@ -49,6 +49,7 @@ fi
 
 [ -e "${script_dir}/logs.txt" ] && rm "${script_dir}/logs.txt"
 touch "${script_dir}/logs.txt"
+log_date
 # -- Main Loop -- #
 
 while true; do
