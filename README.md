@@ -8,7 +8,7 @@ Available in  [changelogs.md](https://github.com/4urora3night/earth/blob/tera/ch
 
 #### Versioning
 The scheme is as follows:
-`{[Major * 100] + Minor}. Patch` \
+`{[Major * 100] + Minor}. Patch` 
 
 #### Commit format
 The commits are based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
