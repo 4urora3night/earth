@@ -2,18 +2,48 @@
 **Version: `v155.3`** \
 A script to install your apps, from a configuration housed in a `.toml` file - for simple, unattended and rapid setups. 
 
+### Usage
+1. `bash <(curl -s "https://raw.githubusercontent.com/4urora3night/earth/refs/heads/main/downloader.sh")`
+2. `cd earth`
+3. `./earth.sh`
+
+_Toml configuration_
+```toml
+[pacman]
+# fill with package names
+install = ['git' ,'cava']
+[flatpak]
+# fill with package IDs
+install = ['app.zen_browser.zen']
+[git]
+# fill with urls to repo 
+clone = ['https://github.com/WeirdTreeThing/chromebook-linux-audio.git']
+# and specify which location to download to
+location = ['./cache/git']
+[wget]
+# fill with url to a file
+file = ['https://raw.githubusercontent.com/4urora3night/dotfiles/refs/heads/main/pac.toml']
+# and specify which location to download to
+location = ['./cache/wget']
+```
+
+The TOML file can be placed in the level above and all levels below the the Project Earth folder. For example:
+```
+📁 Home
+∟ 📄 {Your TOML File}.toml
+∟ 📁 earth
+  ∟ 📄 {Another place your TOML File can live}.toml
+  ∟ 📁 lib
+    ∟ 📄 {Here too can your TOML File exist}.toml
+  ∟ 📄 earth.sh
+```
+Hidden toml files are allowed.
+
+
 
 ### Changelogs 
 Available in  [changelogs.md](https://github.com/4urora3night/earth/blob/tera/changelog.md)
 
-#### Versioning
-The scheme is as follows:
-`{[Major * 100] + Minor}. Patch` \
-
-#### Commit format
-The commits are based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-Also used in the changelogs.
- 
 ---
 ### *Thanks to:*
 - [*Gum*](https://github.com/charmbracelet/gum) \
