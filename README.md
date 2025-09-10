@@ -48,5 +48,7 @@ Available in  [changelogs.md](https://github.com/4urora3night/earth/blob/tera/ch
 ### *Thanks to:*
 - [*Gum*](https://github.com/charmbracelet/gum) \
 	➜ All the eyecandy. 👀
+- ML4W's scripts \
+  ➜ Inspiration. ⭐
 	
 ##### Made by `4urora3night` for a better quality of life 🌟
