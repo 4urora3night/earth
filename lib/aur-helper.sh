@@ -1,46 +1,52 @@
 #!/bin/bash
 # by 4urora3night
 
+AUR_HELPER=""
+
 # -- UI -- #
 setup_cache() {
   text_log "Creating cache folder for temporary files..."
   mkdir -p "${script_dir}/cache"
 }
 
-aur_helper_checks() {
-  clear
-  local Aur_Helpers=("yay" "paru")
+select_helper() {
+  AUR_HELPER="$(compgen -c | sort -u | fzf_app_search)"
+  tput_clean_text_area
+  text_box_confirm "! ${AUR_HELPER} is set as your AUR helper. !"
+  option_submenus 'Ok' 'Redo'
+  case $choice in
+  'Redo') AUR_HELPER="" ;;
+  esac
+}
+
+aur_helper_auto_select() {
+  local aur_helpers=("yay" "paru")
   local installed_counter=1
 
-  for i in "${Aur_Helpers[@]}"; do
+  for i in "${aur_helpers[@]}"; do
     if app_installed_check "${i}"; then
       installed_counter=0
       AUR_HELPER="${i}"
-      break
     fi
   done
+}
 
-  if [[ ! "${installed_counter}" -eq 0 ]]; then
-    title
-    while true; do
-      tput_clean_text_area
+aur_helper_check() {
+  while true; do
+    aur_helper_auto_select
+    if [[ -z "${AUR_HELPER}" ]]; then
+      clear
+      title
       text_box "To use this script, an AUR helper must be set."
       if text_confirm "Do you have a AUR helper installed?"; then
-        while true; do
-          AUR_HELPER="$(compgen -c | sort -u | fzf_app_search)"
-          tput_clean_text_area
-          text_box_confirm "! ${AUR_HELPER} is set as your AUR helper. !"
-          option_submenus 'Ok' 'Redo'
-          case $choice in
-          'Ok') return 0 ;;
-          'Redo') break ;;
-          esac
-        done
+        select_helper
       else
         install_helper
       fi
-    done
-  fi
+    else
+      break
+    fi
+  done
 }
 
 install_helper() {

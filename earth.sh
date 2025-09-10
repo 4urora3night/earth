@@ -44,7 +44,7 @@ fi
 dependency_app_check
 
 if command_available "pacman"; then
-  aur_helper_checks
+  aur_helper_check
 fi
 
 [ -e "${script_dir}/logs.txt" ] && rm "${script_dir}/logs.txt"
