@@ -1,5 +1,5 @@
 # Project Earth 
-**Version: `v155.3`** \
+**Version: `v155.4`** \
 A script to install your apps, from a configuration housed in a `.toml` file - for simple, unattended and rapid setups. 
 
 ### Usage
