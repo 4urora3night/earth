@@ -16,10 +16,10 @@ set -o pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 log_file="${script_dir}/logs/log.md"
-dependencies_files=("log")
+dependencies_files=("log" "file_processing")
 toml_file=""
 
-# -- Main -- #
+# -- Initialisation -- #
 
 [[ -e "${log_file}" ]] && rm "${log_file}"
 mkdir -p "${script_dir}/logs"
@@ -48,3 +48,6 @@ if [[ -e "${toml_file}" ]]; then
 else
   log_error "File does not exist: ${toml_file}"
 fi
+
+# -- Main -- #
+process_toml "${toml_file}"
