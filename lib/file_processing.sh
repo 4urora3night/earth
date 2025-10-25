@@ -19,3 +19,32 @@ process_toml() {
 
   log_information "Tables found:${available_tables[*]}"
 }
+
+conf_installer() {
+  for table in "${available_tables[*]}"; do
+    case "${table}" in
+    ".pacman.install")
+      pacman_install
+      ;;
+    ".flatpak.install")
+      flatpak_install
+      ;;
+    esac
+  done
+}
+
+pacman_install() {
+
+}
+
+flatpak_install() {
+
+}
+
+git_download() {
+
+}
+
+wget_download() {
+
+}
