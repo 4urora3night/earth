@@ -29,6 +29,12 @@ conf_installer() {
     ".flatpak.install")
       flatpak_install
       ;;
+    ".git.clone")
+      git_download
+      ;;
+    ".wget.download")
+      wget_download
+      ;;
     esac
   done
 }
@@ -42,9 +48,23 @@ flatpak_install() {
 }
 
 git_download() {
+  local repo_url=$(tomlq -r '.git.clone' "$1" | tr -d '"')
 
+  if [ -z "$repo_url" ]; then
+    log_error "Git location not found in TOML file"
+    exit 1
+  fi
+
+  git clone $repo_url
 }
 
 wget_download() {
+  local download_url=$(tomlq -r '.wget.file' "$1" | tr -d '"')
 
+  if [ -z "$download_url" ]; then
+    log_error "Wget location not found in TOML file"
+    exit 1
+  fi
+
+  wget $download_url
 }
