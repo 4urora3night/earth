@@ -15,14 +15,13 @@ set -o pipefail
 # -- Variables -- #
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-log_file="${script_dir}/logs/log.md"
+log_file="${script_dir}/log.md"
 dependencies_files=("log" "file_processing")
 toml_file=""
 
 # -- Initialisation -- #
 
 [[ -e "${log_file}" ]] && rm "${log_file}"
-mkdir -p "${script_dir}/logs"
 touch "${log_file}"
 
 for file in "${dependencies_files[@]}"; do
@@ -33,12 +32,11 @@ done
 while getopts ":f:acfw" opts; do
   case ${opts} in
   f)
-    log_information "File successfully received: ${OPTARG}"
     toml_file="${OPTARG}"
+    log_information "File successfully received: ${OPTARG}"
     ;;
   *)
     log_error "Missing arguement -f"
-    exit 1
     ;;
   esac
 done

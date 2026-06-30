@@ -14,7 +14,6 @@ process_toml() {
 
   if [[ -z "${available_tables[*]}" ]]; then
     log_error "No expected tables found"
-    exit 1
   fi
 
   log_information "Tables found:${available_tables[*]}"
@@ -40,11 +39,24 @@ conf_installer() {
 }
 
 pacman_install() {
+ local install_package=$(tomlq -r '.pacman.install' "$1" | tr -d '"')
 
+  if [ -z "$install_package" ]; then
+    log_error "Pacman package(s) name(s) not found"
+  fi
+  
+  pacman -S --noconfirm $install_package
+ 
 }
 
 flatpak_install() {
+  local install_flatpak=$(tomlq -r '.flatpak.install' "$1"| tr -d '"')
 
+  if [ -z "$install_flatpak" ]; then
+    log_error "Flatpak package(s) name(s) not found in TOML file"
+  fi
+
+  flatpak install --non-interactive $install_flatpak
 }
 
 git_download() {
@@ -52,7 +64,6 @@ git_download() {
 
   if [ -z "$repo_url" ]; then
     log_error "Git location not found in TOML file"
-    exit 1
   fi
 
   git clone $repo_url
@@ -63,7 +74,6 @@ wget_download() {
 
   if [ -z "$download_url" ]; then
     log_error "Wget location not found in TOML file"
-    exit 1
   fi
 
   wget $download_url

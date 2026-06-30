@@ -2,6 +2,7 @@
 
 log_error() {
   echo "[ERROR] $1" >>"${log_file}"
+  exit 1
 }
 
 log_information() {
