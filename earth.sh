@@ -3,9 +3,7 @@
 
 # -- Precautions -- #
 
-set -o errexit
 set -o nounset
-set -o pipefail
 
 # cleanup() {
 #   [[ -d "${script_dir}/cache" ]] && rm -rf "${script_dir}/cache"
@@ -21,6 +19,11 @@ toml_file=""
 
 # -- Initialisation -- #
 
+usage() {
+  echo "Usage: $0 -f <file>"
+  echo "  -f      Pass file name to program[Expects a relative to script directory]"
+}
+
 [[ -e "${log_file}" ]] && rm "${log_file}"
 touch "${log_file}"
 
@@ -29,11 +32,14 @@ for file in "${dependencies_files[@]}"; do
   source "${script_dir}/lib/${file}.sh"
 done
 
-while getopts ":f:acfw" opts; do
+while getopts ":f:h" opts; do
   case ${opts} in
   f)
     toml_file="${OPTARG}"
     log_information "File successfully received: ${OPTARG}"
+    ;;
+  h)
+    usage
     ;;
   *)
     log_error "Missing arguement -f"
