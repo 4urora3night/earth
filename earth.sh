@@ -16,6 +16,8 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 log_file="${script_dir}/log.md"
 dependencies_files=("log" "file_processing")
 toml_file=""
+RED="\033[0;31m"
+NO_FORMAT="\033[0m"
 
 # -- Initialisation -- #
 
@@ -51,6 +53,13 @@ if [[ -e "${toml_file}" ]]; then
   log_information "File exists"
 else
   log_error "File does not exist: ${toml_file}"
+fi
+
+if ! command -v tomlq &>/dev/null; then
+  echo -e "${RED}tomlq${NO_FORMAT} NOT INSTALLED"
+  echo "Please install tomlq for your linux distribution."
+  echo "On Arch Linux install yq via pacman"
+  exit
 fi
 
 # -- Main -- #
