@@ -78,27 +78,29 @@ flatpak_install() {
   fi
 
   for package in "${install_flatpak[@]}"; do
-    log_command flatpak install -y "$package"
+    if ! flatpak install -y "$package"; then
+      # TODO: Make the error more verbose
+      echo -e "\nERROR"
+    fi
   done
 }
 
 git_download() {
   local repo_url=()
-  local location="$(tomlq -r '.git.location' "$file")"
+  local location=()
   mapfile -t repo_url < <(tomlq -r '.git.clone[]' "$file")
+  mapfile -t location < <(tomlq -r '.git.location' "$file")
 
-  echo "${script_dir}/${location}"
-
-  if [ -z "$repo_url" ]; then
+  if [[ -z "$repo_url" ]]; then
     log_error "Git repository URL not found in TOML file"
   fi
 
-  if [[ "${script_dir}/${location}" -eq "${script_dir}" ]]; then
+  if [[ -z "${location}" ]]; then
     mkdir -p "${script_dir}/git_repo_cloned"
     pushd "${script_dir}/git_repo_cloned"
   else
     mkdir -p "${script_dir}/${location}"
-    pushd "${script_dir}/${location}/"
+    pushd "${script_dir}/${location}/" &>/dev/null
   fi
 
   for url in "${repo_url[@]}"; do
