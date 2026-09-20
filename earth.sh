@@ -56,9 +56,8 @@ else
 fi
 
 if ! command -v tomlq &>/dev/null; then
-  echo -e "${RED}tomlq${NO_FORMAT} NOT INSTALLED"
-  echo "Please install tomlq for your linux distribution."
-  echo "On Arch Linux install yq via pacman"
+  echo -e "Missing dependency: ${RED}tomlq${NO_FORMAT}"
+  echo "Please install tomlq for your linux distribution.(Arch:yq package via pacman)"
   exit
 fi
 
