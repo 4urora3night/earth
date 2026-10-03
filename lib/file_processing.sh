@@ -97,7 +97,7 @@ git_download() {
 
   if [[ -z "${location}" ]]; then
     mkdir -p "${script_dir}/git_repo_cloned"
-    pushd "${script_dir}/git_repo_cloned"
+    pushd "${script_dir}/git_repo_cloned" &>/dev/null
   else
     mkdir -p "${script_dir}/${location}"
     pushd "${script_dir}/${location}/" &>/dev/null
@@ -113,17 +113,22 @@ git_download() {
 
 wget_download() {
   local file_url=()
-  local location="$(tomlq -r '.wget.location' "$file")"
+  local location=()
   mapfile -t file_url < <(tomlq -r '.wget.file[]' "$file")
+  mapfile -t location < <(tomlq -r '.wget.location' "$file")
 
-  if [[ "${script_dir}/${location}" -eq "${script_dir}" ]]; then
+  if [[ -z "$file_url" ]]; then
+    log_error "URL(for wget) not found in TOML file"
+  fi
+
+  if [[ -z "${location}" ]]; then
     mkdir -p "${script_dir}/wget_files"
-    pushd "${script_dir}/wget_files"
+    pushd "${script_dir}/wget_files" &>/dev/null
   else
     mkdir -p "${script_dir}/${location}"
-    pushd "${script_dir}/${location}"
+    pushd "${script_dir}/${location}" &>/dev/null
   fi
-  for url in "${file_url}"; do
+  for url in "${file_url[@]}"; do
     log_command wget "${url}"
   done
 
